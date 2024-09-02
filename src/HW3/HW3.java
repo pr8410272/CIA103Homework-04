@@ -1,4 +1,5 @@
 package HW3;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -35,7 +36,7 @@ public class HW3 {
 		System.out.println("=============");
 		System.out.println("作業第二題");
         Scanner s=new Scanner(System.in);
-        int R = (int)(Math.random()*2);
+        int R = (int)(Math.random()*1);
 	    for(int i = s.nextInt();;)
 		{ 
 	    	if (i!=R)
@@ -107,28 +108,32 @@ public class HW3 {
 			System.out.println("可選擇的數字一共有"+sum9+"個");
 			System.out.println("隨機抽出六個號碼");
 			Random r = new Random();
-			int[] PickNum = new int[6];
-			for (int ia = 0;ia<6;ia++)
-			{		        
-					PickNum[ia] = r.nextInt(49)+1;		// 將隨機數(1-49)放入 PickNum[ia]
-					for (int ja=0; ja<ia;){			// 與前數列比較，若有相同則再取亂數
-						if (PickNum[ja]==PickNum[ia]){	
-							PickNum[ia] = r.nextInt(6)+1;
-							ja=0;			// 避面重新亂數後又產生相同數字，若出現重覆，迴圈從頭開始重新比較所有數
-						}
-						else if (Math.floor(PickNum[ja])/10 ==hate) {
-							PickNum[ia] = r.nextInt(6)+1;
-							ja=0;							
-						}
-						else if (PickNum[ia]%10 == hate) {
-							PickNum[ia] = r.nextInt(6)+1;
-							ja=0;
-						}
-						else {
-							ja++;
-							}// 若都不重複則下一個數
-						}
-				System.out.print(String.format("%02d",PickNum[ia])+" ");
+			ArrayList Re = new ArrayList<>();
+			for (int ir = 1; ir < 50; ir++) {
+				if (Math.floor(ir / 10) != (int) hate && (ir % 10) != (int) hate) {
+					Re.add(ir);
+				} else {
 				}
-	}
+				;
+			}
+			//以下開始選六數字
+			int[] Pick = new int[6];
+			for(int ii=0;ii<6;ii++) {
+				int r1 = 0;
+				r1 = (int)(Math.random()*(Re.size()));
+				Pick[ii]=(int) Re.get(r1);
+						for(int ji = 0;ji<ii;) {
+								if(Pick[ii]==Pick[ji]) {
+									Pick[ii]=(int) Re.get(r1);
+									ji = 0;
+									}
+									else {
+									ji++;
+									}
+							}
+						System.out.print(String.format("%02d",Pick[ii]) + " ");
+				   }
+				System.out.println();
+			   System.out.println("====================");	
+		}
 }
