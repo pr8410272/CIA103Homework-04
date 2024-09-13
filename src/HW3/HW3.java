@@ -1,8 +1,6 @@
 package HW3;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
+
 public class HW3 {
 	public static void main(String[] args) {
 		System.out.println("======");
@@ -36,7 +34,7 @@ public class HW3 {
 		System.out.println("=============");
 		System.out.println("作業第二題");
         Scanner s=new Scanner(System.in);
-        int R = (int)(Math.random()*1);
+        int R = (int)(Math.random()*101);
 	    for(int i = s.nextInt();;)
 		{ 
 	    	if (i!=R)
@@ -117,23 +115,16 @@ public class HW3 {
 				;
 			}
 			//以下開始選六數字
-			int[] Pick = new int[6];
-			for(int ii=0;ii<6;ii++) {
-				int r1 = 0;
-				r1 = (int)(Math.random()*(Re.size()));
-				Pick[ii]=(int) Re.get(r1);
-						for(int ji = 0;ji<ii;) {
-								if(Pick[ii]==Pick[ji]) {
-									Pick[ii]=(int) Re.get(r1);
-									ji = 0;
-									}
-									else {
-									ji++;
-									}
-							}
-						System.out.print(String.format("%02d",Pick[ii]) + " ");
-				   }
-				System.out.println();
-			   System.out.println("====================");	
+			Set Re2 = new HashSet();
+			while (Re2.size()<6	)		
+				{Re2.add((int)(Math.random()*(Re.size())));
+			}
+					Iterator objs = Re2.iterator();
+					while(objs.hasNext()) {
+					System.out.print(objs.next()+" ");
+					}
+					System.out.println();
+				   System.out.println("====================");	
+			}
 		}
-}
+
